@@ -42,7 +42,13 @@ namespace Canteen_Management_System.Api.Middlewares
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var result = JsonSerializer.Serialize(new
+                {
+                    message = error?.Message,
+                    innerException = error?.InnerException?.Message,
+                    stackTrace = error?.StackTrace
+                });
+
                 await response.WriteAsync(result);
             }
         }

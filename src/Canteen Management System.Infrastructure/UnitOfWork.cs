@@ -47,7 +47,17 @@ namespace Canteen_Management_System.Infrastructure
                 return _brandRepository;
             }
         }
-        public IProductRepository ProductRepository => throw new NotImplementedException();
+        public IProductRepository ProductRepository
+        {
+            get
+            {
+                if (_productRepository == null)
+                {
+                    _productRepository = new ProductRepository(_context);
+                }
+                return _productRepository;
+            }
+        }
 
         public ICustomerRepository CustomerRepository => throw new NotImplementedException();
 

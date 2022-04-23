@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Canteen_Management_System.Application.DomainEventHandlers
+namespace Canteen_Management_System.Application.BrandServices.DomainEventHandlers
 {
     public class BrandAddedNotificationHandler : INotificationHandler<DomainEventNotification<BrandAdded>>
     {
