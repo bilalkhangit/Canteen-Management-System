@@ -9,7 +9,7 @@ namespace Canteen_Management_System.Api.Controllers
 {
     public class ProductController : BaseController
     {
-        private IProductAppService _productAppService;
+        private readonly IProductAppService _productAppService;
         public ProductController(IProductAppService productAppService)
         {
             _productAppService = productAppService;

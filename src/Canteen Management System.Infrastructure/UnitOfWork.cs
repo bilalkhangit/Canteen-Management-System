@@ -59,11 +59,21 @@ namespace Canteen_Management_System.Infrastructure
             }
         }
 
-        public ICustomerRepository CustomerRepository => throw new NotImplementedException();
+        public ICustomerRepository CustomerRepository
+        {
+            get
+            {
+                if (_customerRepository == null)
+                {
+                    _customerRepository = new CustomerRepository(_context);
+                }
+                return _customerRepository;
+            }
+        }
 
         public async Task<int> SaveChangesAsync()
         {
-           return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

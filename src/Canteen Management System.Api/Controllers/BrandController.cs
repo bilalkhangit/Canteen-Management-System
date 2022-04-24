@@ -9,7 +9,7 @@ namespace Canteen_Management_System.Api.Controllers
 {
     public class BrandController : BaseController
     {
-        private IBrandAppService _brandAppService;
+        private readonly IBrandAppService _brandAppService;
         public BrandController(IBrandAppService brandAppService)
         {
             _brandAppService = brandAppService;

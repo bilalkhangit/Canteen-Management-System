@@ -13,6 +13,10 @@ namespace Canteen_Management_System.Core.Aggregates.CustomerAggregate
         public string MobileNumber { get; private set; }
 
         private const int CnicCharLength = 13;
+        public Customer()
+        {
+
+        }
         private Customer(string name, string cnic, string mobileNumber)
         {
             Name = name;
@@ -34,7 +38,7 @@ namespace Canteen_Management_System.Core.Aggregates.CustomerAggregate
             var customer = new Customer(name, cnic, mobileNumber);
 
             var customerAdded = new CustomerAdded(customer);
-            Events.Add(customerAdded);
+            customer.Events.Add(customerAdded);
 
             return customer;
         }

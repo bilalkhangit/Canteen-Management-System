@@ -13,14 +13,19 @@ namespace Canteen_Management_System.Core.Aggregates.OrderAggregate
         public int Quantity { get; private set; }
         public decimal UnitPrice { get; private set; }
         public decimal Total { get; private set; }
-        //public int OrderId { get; private set; }
-        //public Order Order { get; private set; }
 
         public OrderItem()
         {
 
         }
-        public OrderItem(int productId, int quantity, decimal unitPrice)
+        private OrderItem(int productId, int quantity, decimal unitPrice)
+        {
+            ProductId = productId;
+            Quantity = quantity;
+            UnitPrice = unitPrice;
+            Total = unitPrice * quantity;
+        }
+        internal OrderItem AddOrderItem(int productId, int quantity, decimal unitPrice)
         {
             if (unitPrice == 0 || unitPrice < 0)
                 throw new PriceException();
@@ -28,13 +33,10 @@ namespace Canteen_Management_System.Core.Aggregates.OrderAggregate
             if (quantity == 0 || quantity < 0)
                 throw new QuantityException();
 
-            if (ProductId == 0)
+            if (productId == 0)
                 throw new ArgumentNullException("Product id not found");
 
-            ProductId = productId;
-            Quantity = quantity;
-            UnitPrice = unitPrice;
-            Total = unitPrice * quantity;
+            return new OrderItem(productId, quantity, unitPrice);
         }
     }
 }

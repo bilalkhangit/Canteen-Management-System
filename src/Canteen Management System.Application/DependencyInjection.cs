@@ -1,6 +1,7 @@
 ﻿using Canteen_Management_System.Application.BrandServices;
 using Canteen_Management_System.Application.DomainEventHandlers;
 using Canteen_Management_System.Application.Interfaces;
+using Canteen_Management_System.Application.OrderServices;
 using Canteen_Management_System.Application.ProductServices;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace Canteen_Management_System.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped<IBrandAppService, BrandAppService>();
             services.AddScoped<IProductAppService, ProductAppService>();
+            services.AddScoped<IOrderAppService, OrderAppService>();
             return services;
         }
     }

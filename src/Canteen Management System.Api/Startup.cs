@@ -1,5 +1,6 @@
 using Canteen_Management_System.Api.Middlewares;
 using Canteen_Management_System.Application;
+using Canteen_Management_System.Core.Common.Interfaces;
 using Canteen_Management_System.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
