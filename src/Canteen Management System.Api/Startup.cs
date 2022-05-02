@@ -27,7 +27,7 @@ namespace Canteen_Management_System.Api
         {
             services.AddMediatR(typeof(Startup));
 
-            services.AddInfrastructure();
+            services.AddInfrastructure(Configuration);
 
             services.AddControllers();
 

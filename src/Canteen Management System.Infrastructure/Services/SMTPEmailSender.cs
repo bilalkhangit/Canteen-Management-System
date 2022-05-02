@@ -9,10 +9,17 @@ namespace Canteen_Management_System.Infrastructure.Services
 {
     public class SMTPEmailSender : IEmailSender
     {
+        private string _userName;
+        private string _password;   
+        public SMTPEmailSender(string userName, string passWord)
+        {
+            _userName = userName;
+            _password = passWord;
+        }
         public async Task SendEmailAsync(string to, string subject, string message)
         {
             //string to = to; //To address    
-            string from = "BilalOpenSourceWork@gmail.com"; //From address    
+            string from = _userName; //From address    
             MailMessage mailMessage = new MailMessage(from, to);
 
             string mailbody = message;
@@ -25,7 +32,7 @@ namespace Canteen_Management_System.Infrastructure.Services
                 using (var smtpClient = new SmtpClient("smtp.gmail.com", 587)) //Gmail smtp 
                 {
                     System.Net.NetworkCredential basicCredential1 = new
-                    System.Net.NetworkCredential("BilalOpenSourceWork@gmail.com", "bilalopensource#1234");
+                    System.Net.NetworkCredential(_userName, _password);
                     smtpClient.EnableSsl = true;
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.Credentials = basicCredential1;
