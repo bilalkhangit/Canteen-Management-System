@@ -9,6 +9,7 @@ namespace Canteen_Management_System.Application.OrderServices
         public string Name { get; set; }
         public string Cnic { get; set; }
         public string MobileNumber { get; set; }
+        public string Email { get; set; }
         public List<OrderItemDto> Items { get; set; }
     }
 

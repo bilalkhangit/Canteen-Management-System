@@ -31,10 +31,21 @@ namespace Canteen_Management_System.Infrastructure
             return await dbSet.FindAsync(id);
         }
 
+        public virtual async Task<T> GetByCriteria(Expression<Func<T, bool>> predicate)
+        {
+            return await dbSet.Where(predicate).FirstOrDefaultAsync();
+        }
+
         public virtual async Task<bool> Add(T entity)
         {
             await dbSet.AddAsync(entity);
             return true;
+        }
+
+        public virtual async Task<T> AddAndReturnEntity(T entity)
+        {
+            var result =  await dbSet.AddAsync(entity);
+            return result.Entity;
         }
 
         public virtual bool Delete(int id)

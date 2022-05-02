@@ -10,7 +10,9 @@ namespace Canteen_Management_System.Core.Common.Interfaces
     {
         Task<IEnumerable<T>> All();
         Task<T> GetById(int id);
+        Task<T> GetByCriteria(Expression<Func<T, bool>> predicate);
         Task<bool> Add(T entity);
+        Task<T> AddAndReturnEntity(T entity);
         bool Delete(int id);
         bool Update(T entity);
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate);

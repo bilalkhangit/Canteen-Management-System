@@ -19,9 +19,19 @@ namespace Canteen_Management_System.Application.OrderServices
 
         public async Task<int> Add(OrderDto orderDto)
         {
-            var addedCustomer = _unitOfWork.CustomerRepository.Add(new Customer().AddCustomer(orderDto.Name, orderDto.Cnic, orderDto.MobileNumber));
+            var checkForExistingCustomer = await _unitOfWork.CustomerRepository.GetByCriteria(o => o.Cnic == orderDto.Cnic);
+            var customerId = 0;
+            if (checkForExistingCustomer == null)
+            {
+                var addedCustomer = await _unitOfWork.CustomerRepository.AddAndReturnEntity(new Customer().AddCustomer(orderDto.Name, orderDto.Cnic, orderDto.MobileNumber, orderDto.Email));
+                await _unitOfWork.SaveChangesAsync();
+                customerId = addedCustomer.Id;
+            }
+            else
+                customerId = checkForExistingCustomer.Id;
 
-            var order = new Order().AddOrder(addedCustomer.Id);
+
+            var order = new Order().AddOrder(customerId);
 
 
             foreach (var item in orderDto.Items)
