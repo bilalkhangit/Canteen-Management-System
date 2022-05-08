@@ -1,10 +1,12 @@
 ﻿using Canteen_Management_System.Application.Interfaces;
 using Canteen_Management_System.Application.OrderServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Canteen_Management_System.Api.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class OrderController : BaseController
     {
         private readonly IOrderAppService _orderAppService;

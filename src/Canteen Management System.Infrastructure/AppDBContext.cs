@@ -4,7 +4,9 @@ using Canteen_Management_System.Core.Aggregates.OrderAggregate;
 using Canteen_Management_System.Core.Aggregates.ProductAggregate;
 using Canteen_Management_System.Core.Common;
 using Canteen_Management_System.Infrastructure.Configuration;
+using Canteen_Management_System.Infrastructure.Models;
 using MediatR;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Canteen_Management_System.Infrastructure
 {
-    public sealed class AppDBContext : DbContext
+    public sealed class AppDBContext : IdentityDbContext<ApplicationUser>
     {
         private readonly IMediator _mediator;
         public AppDBContext(DbContextOptions<AppDBContext> options, IMediator mediator) : base(options)

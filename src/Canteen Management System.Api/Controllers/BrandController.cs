@@ -1,12 +1,14 @@
 ﻿using Canteen_Management_System.Application.BrandServices;
 using Canteen_Management_System.Application.Interfaces;
 using Canteen_Management_System.Core.Aggregates.BrandAggregate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Canteen_Management_System.Api.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class BrandController : BaseController
     {
         private readonly IBrandAppService _brandAppService;

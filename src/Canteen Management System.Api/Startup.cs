@@ -41,12 +41,17 @@ namespace Canteen_Management_System.Api
             //{
             //    app.UseDeveloperExceptionPage();
             //}
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseRouting();
 
+
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
-            app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<RequestResponseLoggingMiddleware>();
+
 
             app.UseEndpoints(endpoints =>
             {
